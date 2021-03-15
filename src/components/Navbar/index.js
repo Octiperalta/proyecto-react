@@ -1,42 +1,41 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import logo from "./logo.png";
 import "./Navbar.scss";
+import CartWidget from "../CartWidget/"
 
 const Navbar = () => {
   return (
-    // <header></header>
     <header>
-      <a href="#" class="logo">
+      <a href="#" className="logo">
         <img src={logo} alt="" />
       </a>
 
-      <nav class="nav">
-        <li class="nav-item">
+      <nav className="nav">
+        <li className="nav-item">
           <a href="#">New Arrivals</a>
         </li>
-        <li class="nav-item">
+        <li className="nav-item">
           <a href="#">About Us</a>
         </li>
-        <li class="nav-item">
+        <li className="nav-item">
           <a href="#">Shop</a>
         </li>
       </nav>
 
-      <ul class="shop-nav">
-        <li class="search-bar">
+      <ul className="shop-nav">
+        <li className="search-bar">
           <a href="#">
-            <i class="fas fa-search"></i>
+            <i className="fas fa-search"></i>
           </a>
         </li>
-        <li class="user">
+        <li className="user">
           <a href="#">
-            <i class="fas fa-user-alt"></i>
+            <i className="fas fa-user-alt"></i>
           </a>
         </li>
-        <li class="cart">
-          <a href="#">
-            <i class="fas fa-shopping-bag"></i>
-          </a>
+        <li className="cart">
+          <CartWidget />
         </li>
       </ul>
     </header>
