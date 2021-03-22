@@ -1,0 +1,42 @@
+.card {
+  //   background-color: red;
+  margin: 5px;
+  width: 200px;
+  border: 1px solid rgba(0, 0, 0, 8);
+  background-color: rgba($color: #46494f, $alpha: 0.7);
+
+  .card-img {
+    width: 100%;
+    height: 220px;
+    border-bottom: 2px solid #ed6c5b;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      //   object-fit: none;
+
+      display: block;
+    }
+  }
+  .card-body {
+    padding: 0.2em;
+    text-align: left;
+    background-color: rgba($color: #46494f, $alpha: 0.7);
+
+    .item-category {
+      font-size: 0.8rem;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    .item-name {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .item-price {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}

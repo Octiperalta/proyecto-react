@@ -21,9 +21,10 @@ a {
 
 header {
   position: fixed;
+  top: 0;
   text-align: center;
   width: 100%;
-  height: 8vh;
+  min-height: 8vh;
   background: #46494f;
   // background: #f3f3f3;
   display: flex;
@@ -77,4 +78,3 @@ header {
     }
   }
 }
-
