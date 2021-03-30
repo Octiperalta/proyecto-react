@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+# E-Commerce con React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mi nombre es Octavio Peralta y este proyecto fue hecho con React.
 
-## Available Scripts
+## Proyecto
 
-In the project directory, you can run:
+Mi proyecto consiste en un comercio electrónico de una marca inventada por mi (WBikes) dedicada a la venta de cascos, indumentaria y accesorios de motocicletas. Mi decision de hacerlo sobre este rubro es mi gran interés por el mismo, por lo que me resultaria mucho mas entretenido trabajar en la página sobre algo que me gusta. Ahora hablando más sobre la página web en sí, la misma cuenta con: a la izquierda, una barra de navegación con links que permiten navegar a las distintas categorias de los productos; en el centro, el logo de la marca la cual al ser clickeada redirecciona a la pagina inicial; y a la derecha, cuenta con un boton de busqueda, usuario y un carrito (sin funcionalidad actualmente).
+Posteriormente, debajo del Navbar, se encuentra un contenedor con todos los productos con una breve informacion de cada uno de ellos (nombre, precio, categoria de producto). Los mismos pueden ser filtrados por categoría, como mencioné anteriormente, mediante los links de la barra de navegación. Al clickear algun item del contenedor se navega hacia una vista la cual muestra con mas detalle informacion del item en cuestion. Todas los redireccionamientos de vistas son manejados con un spinner el cual simula una carga de la página y también ayuda a tener una mejor experiencia de usuario.
 
-### `npm start`
+## Dependencias extras
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. **Bootstrap**: utilizo Bootstrap para que me ayude con algunas cosas de estilos, como contenedores o el spinner.
+2. **Styled-Components**: utilizo Styled-Components ya que me pareció la mejor alternativa para darle estilos a los componentes, ya que previamente comencé utilizando SASS pero me resulto un poco molesto manejar tantos archivos JS y SCSS.
+3. **Font Awesome**: utilizo los iconos de Font Awesome para que la pagina sea más vistosa.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A excepción de estos tres, las demas dependencias son las que fueron vistas en clase.

@@ -1,29 +1,39 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import ItemDetail from "../ItemDetail";
+import Loader from "../Spinner";
+import products from "../../stock";
 
-const getItems = () => {
+const getItems = productID => {
   return new Promise((resolve, reject) => {
+    const product = products.find(prod => prod.productID === Number(productID));
     setTimeout(() => {
-      resolve({
-        productName: "Un producto",
-        price: 250,
-        description:
-          "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus deserunt ipsum, dolor sit amet consectetur adipisicing elit. Temporibus tempora nemo, sunt odit laudantium ullam assumenda ipsam ex quaerat perferendis! ",
-        imgUrl:
-          "https://images-na.ssl-images-amazon.com/images/I/91aPRdRf21L._AC_SL1500_.jpg",
-      });
+      // console.log(product);
+      resolve(product);
     }, 2000);
   });
 };
 
 function ItemDetailContainer() {
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState();
+  const { id } = useParams();
 
   useEffect(() => {
-    getItems().then(res => setItem(res));
+    // console.log(id);
+
+    getItems(id).then(res => setItem(res));
   });
 
-  return <ItemDetail item={item} />;
+  return (
+    <>
+      {item ? (
+        <ItemDetail item={item} />
+      ) : (
+        <Loader text={"Cargando informacion del producto..."} color='danger' />
+      )}
+      ;
+    </>
+  );
 }
 
 export default ItemDetailContainer;

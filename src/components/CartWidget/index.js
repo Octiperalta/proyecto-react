@@ -1,14 +1,7 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-
+import React from "react";
 
 const CartWidget = () => {
-    return (
-        <a href="#">
-            <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
-        </a>
-    )
-}
+  return <i className='bx bx-cart'></i>;
+};
 
-export default CartWidget
+export default CartWidget;

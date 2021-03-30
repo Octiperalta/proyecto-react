@@ -1,50 +1,47 @@
 import React, { useEffect, useState } from "react";
-import ItemCount from "../ItemCount";
 import ItemList from "../ItemList";
+import Container from "react-bootstrap/Container";
+import Loader from "../Spinner";
+import { useParams } from "react-router-dom";
+import products from "../../stock";
 
-import "./ItemListContainer.scss";
+const fetchItems = categoryID => {
+  let filteredProducts = products;
 
-const products = [
-  {
-    productName: "Helmet",
-    productID: 1,
-    productPrice: "500",
-    imageUrl:
-      "https://images-na.ssl-images-amazon.com/images/I/61ox-GueYpL._AC_SL1500_.jpg",
-  },
-  {
-    productName: "Gloves",
-    productID: 2,
-    productPrice: "200",
-    imageUrl:
-      "https://images-na.ssl-images-amazon.com/images/I/81HZ5-PBpaL._AC_SL1500_.jpg",
-  },
-  {
-    productName: "Backpack",
-    productID: 3,
-    productPrice: "300",
-    imageUrl:
-      "https://images-na.ssl-images-amazon.com/images/I/91aPRdRf21L._AC_SL1500_.jpg",
-  },
-];
+  if (categoryID) {
+    filteredProducts = products.filter(
+      prod => prod.category.categoryID === categoryID
+    );
+  }
+
+  // console.log("Antes de la promesa", filteredProducts);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(filteredProducts), 2000);
+  });
+};
 
 function ItemListContainer() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState();
+  const { id } = useParams(); // ID de Categoria
 
   useEffect(() => {
-    const fetchItems = new Promise((resolve, reject) => {
-      setTimeout(() => resolve(products), 2000);
-    });
+    fetchItems(Number(id)).then(res => setItems(res));
 
-    fetchItems.then(data => setItems(data));
-  }, []);
+    return () => {
+      setItems(null);
+    };
+  }, [id]);
 
   return (
-    <div className='container'>
-      <ItemList items={items} />
-      <ItemCount initial={1} stock={3}></ItemCount>
-      <ItemCount initial={2} stock={10}></ItemCount>
-    </div>
+    <>
+      {items ? (
+        <Container fluid>
+          <ItemList items={items}></ItemList>
+        </Container>
+      ) : (
+        <Loader text={"Cargando lista de productos..."} color='danger' />
+      )}
+    </>
   );
 }
 
