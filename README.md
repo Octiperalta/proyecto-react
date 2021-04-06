@@ -14,3 +14,5 @@ Posteriormente, debajo del Navbar, se encuentra un contenedor con todos los prod
 3. **Font Awesome**: utilizo los iconos de Font Awesome para que la pagina sea más vistosa.
 
 A excepción de estos tres, las demas dependencias son las que fueron vistas en clase.
+
+[**Gif que muestra la navegabilidad de la pagina**](https://imgur.com/a/VZW6Yty)
