@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -32,6 +32,7 @@ const ItemDetails = styled(Col)`
   /* background-color: lightblue; */
   padding: 15px 30px;
   font-family: "Poppins";
+  min-height: 35rem;
 
   .breadcrumb {
     text-align: center;
@@ -86,7 +87,6 @@ const DetailCard = styled.div`
   .brief-description {
     opacity: 0.8;
   }
-
   .purchase-details {
     /* background-color: pink; */
     margin-top: 10px;
@@ -174,11 +174,33 @@ const DetailCard = styled.div`
       text-transform: uppercase;
       font-weight: 500;
       letter-spacing: 1px;
+      position: relative;
+
+      .submit-purchase {
+        width: 15rem;
+        height: 100%;
+        /* background-color: red; */
+        margin-left: 13rem;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          font-size: 1.3rem;
+          transition: transform 0.5s ease-in-out;
+        }
+        &:hover i {
+          transform: translateX(50%);
+        }
+      }
     }
   }
 `;
 
 function ItemDetail({ item }) {
+  const [count, setCount] = useState();
+
   return (
     <Container fluid>
       <Row className='mx-2'>
@@ -238,8 +260,8 @@ function ItemDetail({ item }) {
                     </label>
                     <select
                       className='custom-select'
-                      defaultValue='Select Size'>
-                      <option selected>Select Size</option>
+                      defaultValue={"Select Size"}>
+                      <option>Select Size</option>
                       {item.stock.sizes.map(size => (
                         <option value={size} key={size}>
                           {size}{" "}
@@ -282,14 +304,22 @@ function ItemDetail({ item }) {
 
               <div className='quantity mt-4'>
                 <span>Quantity</span>
-                <ItemCount initial={0} stock={item.stock.stockAvailable} />
+                <ItemCount
+                  initial={0}
+                  stock={item.stock.stockAvailable}
+                  onAdd={setCount}
+                />
+                <ModifiedLink to={"/cart"} style={{ textDecoration: "none" }}>
+                  <button
+                    disabled={!count}
+                    className='button button-main-outline submit-purchase'>
+                    Terminar mi compra
+                    <i
+                      className='bx bx-chevron-right'
+                      style={{ marginLeft: "0.5rem" }}></i>
+                  </button>
+                </ModifiedLink>
               </div>
-
-              <button
-                disabled={item.stock.stockAvailable === 0}
-                className='btn btn-lg btn-success mt-4'>
-                Add to cart
-              </button>
             </div>
           </DetailCard>
         </ItemDetails>

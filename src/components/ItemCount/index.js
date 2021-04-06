@@ -4,16 +4,29 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Counter = styled.div`
-  background: red;
-  width: 80px;
+  /* background: red; */
+  /* padding: 0.5rem; */
+  /* display: flex; */
+  gap: 0.5rem;
+  /* flex-direction: column; */
+  /* width: 100px; */
   height: 40px;
   position: relative;
+
+  .inpunt-counter {
+    height: 100%;
+    /* height: 2.3rem; */
+    width: 5.4rem;
+    position: relative;
+    margin-bottom: 1rem;
+  }
 
   input {
     text-align: center;
     padding-right: 20px;
-    width: 100%;
+    /* width: 2rem; */
     height: 100%;
+    width: 100%;
     &:focus {
       outline: none;
     }
@@ -23,7 +36,7 @@ const Counter = styled.div`
     opacity: 1;
   }
   .handle-buttons {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     justify-content: center;
     /* align-items: center; */
@@ -58,27 +71,41 @@ const OutOfStock = styled.span`
   /* background-color: #e84545; */
 `;
 
-function ItemCount({ initial, stock }) {
+function ItemCount({ initial, stock, onAdd }) {
   const [value, setValue] = useState(initial);
   // console.log({ initial });
 
+  const addToCart = () => {
+    onAdd(value);
+    console.log("Se agregaron al carrito " + value + " productos");
+  };
+
   return (
     <Counter className='counter'>
-      <input type='text' value={value} readOnly />
-      <div className='handle-buttons'>
-        <button
-          className='btn btn-secondary'
-          disabled={value >= stock}
-          onClick={() => setValue(value + 1)}>
-          <i className='bx bxs-up-arrow'></i>
-        </button>
-        <button
-          className='btn btn-secondary'
-          disabled={value === 0}
-          onClick={() => setValue(value - 1)}>
-          <i className='bx bxs-down-arrow'></i>
-        </button>
+      <div className='inpunt-counter'>
+        <input type='text' value={value} readOnly />
+        <div className='handle-buttons'>
+          <button
+            className='btn btn-secondary'
+            disabled={value >= stock}
+            onClick={() => setValue(value + 1)}>
+            <i className='bx bxs-up-arrow'></i>
+          </button>
+          <button
+            className='btn btn-secondary'
+            disabled={value === 0}
+            onClick={() => setValue(value - 1)}>
+            <i className='bx bxs-down-arrow'></i>
+          </button>
+        </div>
       </div>
+      <button
+        className='button button-main'
+        onClick={addToCart}
+        disabled={value === 0}>
+        <i className='bx bx-cart' style={{ marginRight: "0.5rem" }}></i>
+        Agregar al Carrito
+      </button>
       {stock === 0 && (
         <OutOfStock className='badge bg-danger'>Stock Agotado</OutOfStock>
       )}

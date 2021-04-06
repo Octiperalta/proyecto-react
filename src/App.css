@@ -14,10 +14,44 @@
 body {
   font-family: "Raleway";
   min-height: 100vh;
-  /* width: 100vw; */
-  /* overflow-x: hidden; */
-  /* background: #41483d; */
-  /* background: #f3f3f3; */
-  /* background: #fafafa; */
-  /* background: red; */
+}
+
+.button {
+  align-items: center;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0.5rem 1rem;
+  display: block;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: 250ms ease-in-out;
+}
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.button-main {
+  background-color: #b56057;
+  color: #f3f3f3;
+  border: 1px solid #b56057;
+}
+
+.button-main:hover {
+  background-color: #90473f;
+}
+
+.button-main-outline {
+  font-weight: 500;
+  color: #b56057;
+  border: 1px solid #b56057;
+}
+
+.button-main-outline:hover {
+  filter: brightness(95%);
 }

@@ -38,6 +38,10 @@ function App() {
             <ItemDetailContainer />
           </Route>
 
+          <Route exact path='/cart'>
+            <h1>Carrito</h1>
+          </Route>
+
           <Route exact path='*'>
             <Error>
               <h2 className='display-3'>404 Error</h2>
