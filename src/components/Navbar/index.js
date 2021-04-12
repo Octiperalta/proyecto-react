@@ -87,13 +87,55 @@ const MyNavbar = styled.nav`
   .account {
     display: flex;
     align-items: center;
-
-    i {
+    list-style: none;
+    height: 100%;
+    /* background-color: red; */
+    & > div {
+      position: relative;
       margin-left: 20px;
-      font-size: 1.2rem;
-      font-weight: 100;
-      color: white;
-      cursor: pointer;
+      /* text-align: center; */
+      i {
+        /* margin-left: 20px; */
+        font-size: 1.4rem;
+        font-weight: 100;
+        color: white;
+        cursor: pointer;
+      }
+    }
+    .cart {
+      /* background-color: pink; */
+      &:hover {
+        .cart-dropdown {
+          height: 300px;
+
+          &:after {
+            display: block;
+          }
+        }
+      }
+
+      .cart-dropdown {
+        position: absolute;
+        top: 150%;
+        right: 0%;
+        /* background-color: #46494f; */
+        background-color: #e2e3e5;
+        height: 0px;
+        width: 250px;
+        transition: 250ms ease-in-out;
+
+        &:after {
+          content: "";
+          position: absolute;
+          display: none;
+          height: 10px;
+          width: 10px;
+          background-color: #e2e3e5;
+          top: -5px;
+          right: 4px;
+          transform: rotate(-45deg);
+        }
+      }
     }
   }
 `;
@@ -191,9 +233,16 @@ const Navbar = () => {
         </Link>
 
         <div className='account'>
-          <i className='bx bx-search'></i>
-          <i className='bx bx-user'></i>
-          <CartWidget />
+          <div>
+            <i className='bx bx-search'></i>
+          </div>
+          <div>
+            <i className='bx bx-user'></i>
+          </div>
+          <div className='cart'>
+            <CartWidget />
+            <div className='cart-dropdown'></div>
+          </div>
         </div>
       </MyNavbar>
     </>

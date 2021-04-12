@@ -158,36 +158,38 @@ function Item({ itemData }) {
   const history = useHistory();
 
   function goToItemDetail() {
-    history.push("/item/item-test");
+    history.push(`/item/${itemData.productID}`);
   }
 
   return (
     <li>
       <CardItem className='rounded border shadow'>
-        <Link to={`/item/${itemData.productID}`}>
-          <div className='card-item-image'>
+        <div className='card-item-image' onClick={e => console.log(e.target)}>
+          <Link to={`/item/${itemData.productID}`}>
             <img src={itemData.imageUrl} alt='' />
+          </Link>
 
-            <div className='product-links'>
-              <span>
-                <i className='bx bxs-cart'></i>
-              </span>
-              <span onClick={goToItemDetail}>
-                <i className='bx bx-search-alt-2'></i>
-                View
-              </span>
-              <span>
-                <i className='bx bx-fullscreen'></i>
-              </span>
-            </div>
+          <div className='product-links' style={{ pointerEvents: "none" }}>
+            <span style={{ pointerEvents: "initial" }}>
+              <i className='bx bxs-cart'></i>
+            </span>
+            <span onClick={goToItemDetail} style={{ pointerEvents: "initial" }}>
+              <i className='bx bx-search-alt-2'></i>
+              View
+            </span>
+            <span style={{ pointerEvents: "initial" }}>
+              <i className='bx bx-fullscreen'></i>
+            </span>
           </div>
-        </Link>
+        </div>
         <div className='card-item-body'>
           <p className='card-item-description'>
             {itemData.category.categoryName}
           </p>
           {/* <h3 className='card-item-title'>Titulo</h3> */}
-          <ModifiedLink to={"/item/test-item"} className='card-item-title'>
+          <ModifiedLink
+            to={`/item/${itemData.productID}`}
+            className='card-item-title'>
             {itemData.productName.shortName}
           </ModifiedLink>
           <p className='card-item-price'>${itemData.productPrice}</p>

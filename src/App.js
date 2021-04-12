@@ -5,6 +5,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import { CartProvider } from "./context/CartContext";
+import Cart from "./components/Cart";
 
 const Content = styled.div`
   margin-top: calc(4vh);
@@ -39,9 +40,9 @@ function App() {
             </Route>
 
             <Route exact path='/cart'>
-              <h1>Carrito</h1>
+              <Cart />
             </Route>
-
+            <Route path='/cart' component={Cart} />
             <Route exact path='*'>
               <Error>
                 <h2 className='display-3'>404 Error</h2>

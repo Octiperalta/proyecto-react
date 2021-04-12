@@ -3,8 +3,9 @@ import Item from "../Item";
 import styled from "styled-components";
 
 const ProductsList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  /* flex-wrap: wrap; */
   list-style-type: none;
 `;
 
