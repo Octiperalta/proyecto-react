@@ -14,7 +14,6 @@ export function CartProvider({ children }) {
       setCart(cart);
     } else {
       setCart([...cart, { item: newItem, quantity: newQuantity }]);
-      console.log("Carrito:", cart);
     }
   };
 
