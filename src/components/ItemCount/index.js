@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 // import "./style.scss";
+import CartContext from "../../context/CartContext";
 
 import styled from "styled-components";
 
@@ -71,13 +72,17 @@ const OutOfStock = styled.span`
   /* background-color: #e84545; */
 `;
 
-function ItemCount({ initial, stock, onAdd }) {
+function ItemCount({ initial, stock, onAdd, item }) {
   const [value, setValue] = useState(initial);
+  const { addItem } = useContext(CartContext);
   // console.log({ initial });
 
   const addToCart = () => {
     onAdd(value);
     console.log("Se agregaron al carrito " + value + " productos");
+    addItem(item, value);
+    // console.log("Carrito", cart);
+    // console.log(item);
   };
 
   return (

@@ -1,330 +1,355 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import React, { useContext, useState } from "react";
+import "./style.scss";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import ItemCount from "../ItemCount";
+import CartContext from "../../context/CartContext";
 
 const ModifiedLink = styled(Link)`
+  color: unset;
   text-decoration: none;
-  color: #46494f;
 
   &:hover {
+    color: initial;
     text-decoration: underline;
-    color: inherit;
   }
 `;
-
-const ItemImage = styled(Col)`
-  /* background-color: red; */
-  width: 550px;
-  height: 550px;
-
-  img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-  }
-`;
-const ItemDetails = styled(Col)`
-  /* background-color: lightblue; */
-  padding: 15px 30px;
-  font-family: "Poppins";
-  min-height: 35rem;
-
-  .breadcrumb {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    font-size: 0.9rem;
-  }
-`;
-
-const DetailCard = styled.div`
-  margin-top: 30px;
-
-  .detail-card-title {
-    font-family: "Raleway";
-    font-size: 3.8rem;
-    font-weight: 600;
-    line-height: 0.9;
-    letter-spacing: 0.5px;
-  }
-
-  .detail-card-info {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .price {
-      font-size: 1.5rem;
-      color: rgba(181, 96, 87, 0.9);
-
-      font-weight: 500;
-
-      /* opacity: 0.8; */
-    }
-    .ratings {
-      font-size: 1.2rem;
-
-      span {
-        margin-left: 10px;
-        font-family: "Montserrat";
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        opacity: 0.8;
-        font-weight: 400;
-      }
-      i {
-        color: #b56057;
-      }
-    }
-  }
-
-  .brief-description {
-    opacity: 0.8;
-  }
-  .purchase-details {
-    /* background-color: pink; */
-    margin-top: 10px;
-    /* display: flex; */
-
-    .free-shipping {
-      /* background-color: red; */
-      display: flex;
-      align-items: center;
-      i {
-        margin: 0 5px;
-        font-size: 1.125rem;
-        margin-right: 5px;
-        line-height: 1;
-      }
-      span {
-        text-transform: uppercase;
-        font-weight: 500;
-        color: #29bb89;
-      }
-    }
-
-    .size {
-      display: flex;
-      flex-direction: column;
-      label {
-        text-transform: uppercase;
-        font-weight: 500;
-        letter-spacing: 1px;
-
-        span {
-          text-transform: lowercase;
-          font-weight: 500;
-          font-size: 0.9rem;
-          font-family: "Montserrat";
-          color: rgba(0, 0, 0, 0.6);
-        }
-      }
-    }
-
-    .color {
-      margin-left: 10px;
-
-      span {
-        text-transform: uppercase;
-        font-weight: 500;
-        letter-spacing: 1px;
-      }
-      .radio-input {
-        display: flex;
-
-        label {
-          margin-right: 10px;
-          border: 1px solid grey;
-          border-radius: 4px;
-          padding: 2px 10px;
-          color: rgba(0, 0, 0, 0.7);
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
-          font-weight: 600;
-          font-family: "Montserrat";
-          cursor: pointer;
-          transition: background 200ms ease-in-out;
-          font-size: 0.8rem;
-
-          &:hover {
-            background: #536162;
-            color: #f3f4ed;
-          }
-        }
-
-        input[type="radio"] {
-          visibility: hidden;
-          display: none;
-
-          &:checked + label {
-            background: #536162;
-            color: #f3f4ed;
-          }
-        }
-      }
-    }
-
-    .quantity {
-      text-transform: uppercase;
-      font-weight: 500;
-      letter-spacing: 1px;
-      position: relative;
-
-      .submit-purchase {
-        width: 15rem;
-        height: 100%;
-        /* background-color: red; */
-        margin-left: 13rem;
-        margin-top: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        i {
-          font-size: 1.3rem;
-          transition: transform 0.5s ease-in-out;
-        }
-        &:hover i {
-          transform: translateX(50%);
-        }
-      }
-    }
-  }
-`;
-
 function ItemDetail({ item }) {
   const [count, setCount] = useState();
+  const { cart } = useContext(CartContext);
+  console.log("Carrito:", cart);
 
   return (
-    <Container fluid>
-      <Row className='mx-2'>
-        <ItemImage xs='1'>
-          <img src={item.imageUrl} alt='' />
-        </ItemImage>
-        <ItemDetails xs='7' className='border rounded'>
-          <div className='breadcrumb'>
-            <div className='breadcrumb-item'>
-              <ModifiedLink to='/'>Home</ModifiedLink>
-            </div>
-            <div className='breadcrumb-item'>
-              <ModifiedLink to={`/category/${item.category.categoryID}`}>
-                {item.category.categoryName}
-                {/* {console.log(item.category)} */}
-              </ModifiedLink>
-            </div>
-            <div className='breadcrumb-item active'>
-              {item.productName.shortName}
+    <section className='item-section'>
+      <div className='item-img'>
+        <img src={item.imageUrl} alt='asd' />
+      </div>
+      <div className='item-info'>
+        <div className='breadcrumb'>
+          <div className='breadcrumb-item'>
+            <ModifiedLink to={"/"}>Home</ModifiedLink>
+          </div>
+          <div className='breadcrumb-item'>
+            <ModifiedLink to={`/category/${item.category.categoryID}`}>
+              {item.category.categoryName}
+            </ModifiedLink>
+          </div>
+          <div className='breadcrumb-item'>{item.productName.shortName}</div>
+        </div>
+        <div className='item-body'>
+          <h3 className='item-name'>{item.productName.longName}</h3>
+          <div className='price-n-rate'>
+            <span>${item.productPrice}</span>
+            <div className='rating'>
+              <i className='fas fa-star'></i>
+              <i className='fas fa-star'></i>
+              <i className='fas fa-star'></i>
+              <i className='fas fa-star'></i>
+              <i className='fas fa-star dif'></i>
             </div>
           </div>
-          <DetailCard>
-            <h4 className='detail-card-subtitle text-muted h5'>
-              {item.category.categoryName}
-            </h4>
-            <h2 className='detail-card-title'>{item.productName.longName}</h2>
-            <p className='detail-card-info'>
-              <span className='price'>${item.productPrice}</span>
-              <span className='ratings'>
-                <i className='bx bxs-star'></i>
-                <i className='bx bxs-star'></i>
-                <i className='bx bxs-star'></i>
-                <i className='bx bxs-star-half'></i>
-                <i className='bx bx-star'></i>
-                <span> 20 reviews </span>
-              </span>
-            </p>
-            <p className='brief-description'>
-              {item.description.shortDescription}
-            </p>
+          <p>{item.description.shortDescription}</p>
+        </div>
 
-            <div className='purchase-details mt-4'>
-              {item.freeShipping && (
-                <Row>
-                  <div className='free-shipping mb-3'>
-                    <i className='bx bx-package bx-flip-horizontal'></i>
-                    Envío <span className='mx-2'>gratis</span> en Argentina
-                  </div>
-                </Row>
-              )}
+        <div className='purchase-details'>
+          <div className='purchase-option'>
+            <h5>
+              Size <span>(required)</span>
+            </h5>
+            <select name='size' id='size' defaultChecked={"Select Size"}>
+              <option>Select Size</option>
+              {item.stock.sizes.map(size => (
+                <option value={size} key={size}>
+                  {size}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className='purchase-option'>
+            <h5>
+              Color <span>(required)</span>
+            </h5>
+            <select name='szie' id='size'>
+              <option value='s'>Negro</option>
+              <option value='m'>Blanco</option>
+            </select>
+          </div>
+          <div className='purchase-option'>
+            <h5>
+              Quantity <span>(required)</span>
+            </h5>
+            <ItemCount
+              initial={0}
+              stock={item.stock.stockAvailable}
+              onAdd={setCount}
+              item={item}
+            />
+            <button
+              className='button submit-purchase button-main-outline'
+              disabled={!count}>
+              <Link
+                to='/cart'
+                style={{ textDecoration: "none", color: "unset" }}>
+                Terminar mi Compra
+              </Link>
+              <i className='fas fa-chevron-right'></i>
+            </button>
+          </div>
+        </div>
+      </div>
 
-              <Row>
-                <Col>
-                  <div className='size'>
-                    <label>
-                      Size <span>(required)</span>
-                    </label>
-                    <select
-                      className='custom-select'
-                      defaultValue={"Select Size"}>
-                      <option>Select Size</option>
-                      {item.stock.sizes.map(size => (
-                        <option value={size} key={size}>
-                          {size}{" "}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </Col>
-                <Col>
-                  <div className='color'>
-                    <span>Color</span>
-                    <div className='radio-input'>
-                      <input
-                        type='radio'
-                        id='customRadio1'
-                        name='customRadio'
-                        className='custom-control-input'
-                      />
-                      <label
-                        className='custom-control-label'
-                        htmlFor='customRadio1'>
-                        Black
-                      </label>
+      <div className='item-details'>
+        <div className='wrap'>
+          <div className='tabset'>
+            <input
+              type='radio'
+              name='tabset'
+              id='tab1'
+              aria-controls='description'
+              defaultChecked
+            />
+            <label htmlFor='tab1'>Description</label>
 
-                      <input
-                        type='radio'
-                        id='customRadio2'
-                        name='customRadio'
-                        className='custom-control-input'
-                      />
-                      <label
-                        className='custom-control-label'
-                        htmlFor='customRadio2'>
-                        Grey
-                      </label>
+            <input
+              type='radio'
+              name='tabset'
+              id='tab2'
+              aria-controls='aditional-info'
+            />
+            <label htmlFor='tab2'>Aditional Information</label>
+
+            <input
+              type='radio'
+              name='tabset'
+              id='tab3'
+              aria-controls='review'
+            />
+            <label htmlFor='tab3'>Review</label>
+
+            <div className='tab-panels'>
+              <section id='description' className='tab-panel'>
+                <h2>About</h2>
+                <p>
+                  The Scorpion EXO-R420 isn't some half-baked race-inspired
+                  helmet. This is the real deal, with an advanced LG
+                  polycarbonate shell that is SNELL approved. The Ellip-Tec 2
+                  face shield pulls the shield snug, making the EXO-R420
+                  aerodynamic. Cheek pads have an emergency release system and
+                  are washable if needed. Take the Scorpion EXO-R420 to the
+                  track or to the twisties.
+                </p>
+
+                <h4>Features:</h4>
+                <ul className='features'>
+                  <li>
+                    Ellip-Tec II Ratchet System for easy, secure, tool-less face
+                    shield changes in seconds
+                  </li>
+                  <li>
+                    Optically-clear, anti-scratch hardened coating, 100% UV
+                    protected face shield with state-of-the art fog free
+                    technology
+                  </li>
+                  <li>
+                    Removable and washable KwikWick II anti-microbial fabric
+                    keeps you cool and dry in warm weather, warm in cool weather
+                  </li>
+                  <li>
+                    Kwikfit cheek pads allow easy on and off of the most common
+                    styles of eye glasses
+                  </li>
+                  <li>
+                    Tabs located on the neck roll allow easy removal of the
+                    cheek pads by trained emergency medical personnel
+                  </li>
+                  <li>
+                    Aero tuned ventilation system uses a large top vent and
+                    mouth vents engineered to allow more airflow to the riders
+                    head while maintaining low noise levels
+                  </li>
+                  <li>
+                    Face shield lock system securely locks the face shield in
+                    place
+                  </li>
+                  <li>Speaker pockets</li>
+                  <li>2 shell sizes (XS-MD, LG-3XL)</li>
+                  <li>SNELL M2015 (XS-2XL only) and DOT approved</li>
+                </ul>
+              </section>
+
+              <section id='aditional-info' className='tab-panel'>
+                <h2>Aditional information</h2>
+                <div className='table'>
+                  <div className='column'>
+                    <div className='fila'>
+                      <h4>PRODUCT #</h4>
+                      <span>orem ipsum dolor sit amet</span>
+                    </div>
+                    <div className='fila'>
+                      <h4>AVAILABLE PACKAGING</h4>
+                      <span>LOLDuis aute irure dolor in reprehenderit</span>
+                    </div>
+                    <div className='fila'>
+                      <h4>WEIGHT</h4>
+                      <span>dolor sit amet Lorem, ipsum.</span>
+                    </div>
+                    <div className='fila'>
+                      <h4>SUNT IN CULPA QUI</h4>
+                      <span>Lorem ipsum dolor sit amet</span>
                     </div>
                   </div>
-                </Col>
-              </Row>
+                  <div className='column'>
+                    <div className='fila'>
+                      <h4>WEIGHT</h4>
+                      <span>Lorem ipsum dolor sit amet consectetur.</span>
+                    </div>
+                    <div className='fila'>
+                      <h4>SUNT IN CULPA QUI</h4>
+                      <span>Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div className='fila'>
+                      <h4>WEIGHT</h4>
+                      <span>Lorem ipsum dolor sit amet consectetur.</span>
+                    </div>
+                    <div className='fila'>
+                      <h4>AVAILABLE PACKAGING</h4>
+                      <span>LOLDuis aute irure dolor in reprehenderit</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
 
-              <div className='quantity mt-4'>
-                <span>Quantity</span>
-                <ItemCount
-                  initial={0}
-                  stock={item.stock.stockAvailable}
-                  onAdd={setCount}
-                />
-                <ModifiedLink to={"/cart"} style={{ textDecoration: "none" }}>
-                  <button
-                    disabled={!count}
-                    className='button button-main-outline submit-purchase'>
-                    Terminar mi compra
-                    <i
-                      className='bx bx-chevron-right'
-                      style={{ marginLeft: "0.5rem" }}></i>
-                  </button>
-                </ModifiedLink>
-              </div>
+              <section id='review' className='tab-panel'>
+                <div className='reviewer'>
+                  <div className='reviewer__image'>
+                    <div className='img-wrapper'>
+                      <img src='//i.pravatar.cc/300?img=3' alt='' />
+                    </div>
+                    <span className='date'>December 2020</span>
+                  </div>
+                  <div className='reviewer__data'>
+                    <h4 className='name'>Han Solo</h4>
+                    <div className='stars'>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star dif'></i>
+                    </div>
+                    <p className='review'>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Sint voluptatibus debitis, aliquid totam nisi esse!
+                      Corporis deserunt vitae fuga porro blanditiis maxime
+                      architecto at explicabo.
+                    </p>
+                  </div>
+                </div>
+                <div className='reviewer'>
+                  <div className='reviewer__image'>
+                    <div className='img-wrapper'>
+                      <img src='//i.pravatar.cc/300?img=17' alt='' />
+                    </div>
+                    <span className='date'>July 2020</span>
+                  </div>
+                  <div className='reviewer__data'>
+                    <h4 className='name'>Luke Skywalker</h4>
+                    <div className='stars'>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                    </div>
+                    <p className='review'>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Neque facilis dolores laboriosam, odio ipsum impedit est,
+                      quisquam quam beatae consequatur debitis distinctio
+                      officia rem eum!
+                    </p>
+                  </div>
+                </div>
+
+                <div className='reviewer'>
+                  <div className='reviewer__image'>
+                    <div className='img-wrapper'>
+                      <img src='//i.pravatar.cc/300?img=21' alt='' />
+                    </div>
+                    <span className='date'>October 2019</span>
+                  </div>
+                  <div className='reviewer__data'>
+                    <h4 className='name'>Princess Leia</h4>
+                    <div className='stars'>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star dif'></i>
+                    </div>
+                    <p className='review'>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Sint voluptatibus debitis, aliquid totam nisi esse!
+                      Corporis deserunt vitae fuga porro blanditiis maxime
+                      architecto at explicabo.
+                    </p>
+                  </div>
+                </div>
+
+                <div className='reviewer'>
+                  <div className='reviewer__image'>
+                    <div className='img-wrapper'>
+                      <img src='//i.pravatar.cc/300?img=13' alt='' />
+                    </div>
+                    <span className='date'>August 2019</span>
+                  </div>
+                  <div className='reviewer__data'>
+                    <h4 className='name'>Jabba Hut</h4>
+                    <div className='stars'>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star dif'></i>
+                      <i className='fas fa-star dif'></i>
+                      <i className='fas fa-star dif'></i>
+                    </div>
+                    <p className='review'>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Sint voluptatibus debitis, aliquid totam nisi esse!
+                      Corporis deserunt vitae fuga porro blanditiis maxime
+                      architecto at explicabo.
+                    </p>
+                  </div>
+                </div>
+
+                <div className='reviewer'>
+                  <div className='reviewer__image'>
+                    <div className='img-wrapper'>
+                      <img src='//i.pravatar.cc/300?img=10' alt='' />
+                    </div>
+                    <span className='date'>January 2018</span>
+                  </div>
+                  <div className='reviewer__data'>
+                    <h4 className='name'>Han Solo</h4>
+                    <div className='stars'>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star'></i>
+                      <i className='fas fa-star dif'></i>
+                      <i className='fas fa-star dif'></i>
+                    </div>
+                    <p className='review'>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Sint voluptatibus debitis, aliquid totam nisi esse!
+                      Corporis deserunt vitae fuga porro blanditiis maxime
+                      architecto at explicabo.
+                    </p>
+                  </div>
+                </div>
+              </section>
             </div>
-          </DetailCard>
-        </ItemDetails>
-      </Row>
-    </Container>
+          </div>
+          {/* End Tabset */}
+        </div>
+      </div>
+    </section>
   );
 }
 

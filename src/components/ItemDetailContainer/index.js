@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import ItemDetail from "../ItemDetail";
 import Loader from "../Spinner";
+import ItemDetail from "../ItemDetail";
+
 import products from "../../stock";
 
 const getItems = productID => {
