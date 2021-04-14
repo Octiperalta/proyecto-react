@@ -212,17 +212,17 @@ const Navbar = () => {
       <MyNavbar>
         <div className='categories'>
           <CategoriesItem className='nav-item'>
-            <NavLink to={"/category/1"} activeClassName='active'>
+            <NavLink to={"/category/helmets"} activeClassName='active'>
               Cascos
             </NavLink>
           </CategoriesItem>
           <CategoriesItem className='nav-item'>
-            <NavLink to={"/category/2"} activeClassName='active'>
+            <NavLink to={"/category/jackets"} activeClassName='active'>
               Camperas
             </NavLink>
           </CategoriesItem>
           <CategoriesItem className='nav-item'>
-            <NavLink to={"/category/3"} activeClassName='active'>
+            <NavLink to={"/category/gloves"} activeClassName='active'>
               Guantes
             </NavLink>
           </CategoriesItem>

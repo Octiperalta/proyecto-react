@@ -151,7 +151,6 @@ const ModifiedLink = styled(Link)`
   &:hover {
     text-decoration: underline;
   }
-  /* background-color: red; */
 `;
 
 function Item({ itemData }) {

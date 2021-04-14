@@ -3,16 +3,14 @@ import { useParams } from "react-router";
 import Loader from "../Spinner";
 import ItemDetail from "../ItemDetail";
 
-import products from "../../stock";
+import { getFirestore } from "../../firebase";
 
-const getItems = productID => {
-  return new Promise((resolve, reject) => {
-    const product = products.find(prod => prod.productID === Number(productID));
-    setTimeout(() => {
-      // console.log(product);
-      resolve(product);
-    }, 2000);
-  });
+const getItems2 = async productID => {
+  const db = getFirestore();
+  const itemsCollection = db.collection("items");
+  const itemDetail = itemsCollection.doc(productID).get();
+
+  return itemDetail;
 };
 
 function ItemDetailContainer() {
@@ -20,10 +18,8 @@ function ItemDetailContainer() {
   const { id } = useParams();
 
   useEffect(() => {
-    // console.log(id);
-
-    getItems(id).then(res => setItem(res));
-  });
+    getItems2(id).then(res => setItem({ productID: res.id, ...res.data() }));
+  }, [id]);
 
   return (
     <>

@@ -6,8 +6,8 @@ const products = [
     },
     productID: 1,
     category: {
-      categoryName: "Helmet",
-      categoryID: 1,
+      categoryName: "Casco",
+      categoryID: "Helmet",
     },
     productPrice: "500",
     imageUrl:
@@ -30,15 +30,15 @@ const products = [
     },
     productID: 2,
     category: {
-      categoryName: "Helmet",
-      categoryID: 1,
+      categoryName: "Casco",
+      categoryID: "Helmet",
     },
     productPrice: "250",
     imageUrl:
       "https://www.revzilla.com/product_images/0356/8841/icon_airflite_helmet_black_750x750.jpg",
     description: {
       shortDescription:
-        " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi qui minima provident voluptatem nostrum, similique, ex perferendis blanditiis sit vero magni, error totam deleniti molestias voluptatibus veniam nihil cum. Eius.",
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi qui minima provident voluptatem nostrum, similique, ex perferendis blanditiis sit vero magni, error totam deleniti molestias voluptatibus veniam nihil cum. Eius.",
       longDescription: "",
     },
     freeShipping: true,
@@ -54,8 +54,8 @@ const products = [
     },
     productID: 3,
     category: {
-      categoryName: "Helmet",
-      categoryID: 1,
+      categoryName: "Casco",
+      categoryID: "Helmet",
     },
     productPrice: "150",
     imageUrl:
@@ -78,8 +78,8 @@ const products = [
     },
     productID: 4,
     category: {
-      categoryName: "Helmet",
-      categoryID: 1,
+      categoryName: "Casco",
+      categoryID: "Helmet",
     },
     productPrice: "600",
     imageUrl:
@@ -102,8 +102,8 @@ const products = [
     },
     productID: 5,
     category: {
-      categoryName: "Helmet",
-      categoryID: 1,
+      categoryName: "Casco",
+      categoryID: "Helmet",
     },
     productPrice: "400",
     imageUrl:
@@ -126,8 +126,8 @@ const products = [
     },
     productID: 6,
     category: {
-      categoryName: "Helmet",
-      categoryID: 1,
+      categoryName: "Casco",
+      categoryID: "Helmet",
     },
     productPrice: "400",
     imageUrl:
@@ -150,8 +150,8 @@ const products = [
     },
     productID: 7,
     category: {
-      categoryName: "Jacket",
-      categoryID: 2,
+      categoryName: "Campera",
+      categoryID: "jacket",
     },
     productPrice: "650",
     imageUrl:
@@ -175,8 +175,8 @@ const products = [
     },
     productID: 8,
     category: {
-      categoryName: "Jacket",
-      categoryID: 2,
+      categoryName: "Campera",
+      categoryID: "jacket",
     },
     productPrice: "219",
     imageUrl:
@@ -200,8 +200,8 @@ const products = [
     },
     productID: 9,
     category: {
-      categoryName: "Jacket",
-      categoryID: 2,
+      categoryName: "Campera",
+      categoryID: "jacket",
     },
     productPrice: "500",
     imageUrl:
@@ -225,8 +225,8 @@ const products = [
     },
     productID: 10,
     category: {
-      categoryName: "Jacket",
-      categoryID: 2,
+      categoryName: "Campera",
+      categoryID: "jacket",
     },
     productPrice: "370",
     imageUrl:
@@ -250,8 +250,8 @@ const products = [
     },
     productID: 11,
     category: {
-      categoryName: "Jacket",
-      categoryID: 2,
+      categoryName: "Campera",
+      categoryID: "jacket",
     },
     productPrice: "600",
     imageUrl:
@@ -275,8 +275,8 @@ const products = [
     },
     productID: 12,
     category: {
-      categoryName: "Gloves",
-      categoryID: 3,
+      categoryName: "Guantes",
+      categoryID: "gloves",
     },
     productPrice: "60",
     imageUrl:
@@ -300,8 +300,8 @@ const products = [
     },
     productID: 13,
     category: {
-      categoryName: "Gloves",
-      categoryID: 3,
+      categoryName: "Guantes",
+      categoryID: "gloves",
     },
     productPrice: "30",
     imageUrl:
@@ -325,8 +325,8 @@ const products = [
     },
     productID: 14,
     category: {
-      categoryName: "Gloves",
-      categoryID: 3,
+      categoryName: "Guantes",
+      categoryID: "gloves",
     },
     productPrice: "60",
     imageUrl:
@@ -350,8 +350,8 @@ const products = [
     },
     productID: 15,
     category: {
-      categoryName: "Gloves",
-      categoryID: 3,
+      categoryName: "Guantes",
+      categoryID: "gloves",
     },
     productPrice: "90",
     imageUrl:
@@ -375,8 +375,8 @@ const products = [
     },
     productID: 16,
     category: {
-      categoryName: "Gloves",
-      categoryID: 3,
+      categoryName: "Guantes",
+      categoryID: "gloves",
     },
     productPrice: "160",
     imageUrl:
@@ -400,8 +400,8 @@ const products = [
     },
     productID: 17,
     category: {
-      categoryName: "Gloves",
-      categoryID: 3,
+      categoryName: "Guantes",
+      categoryID: "gloves",
     },
     productPrice: "30",
     imageUrl:

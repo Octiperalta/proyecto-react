@@ -49,8 +49,17 @@ function ItemDetail({ item }) {
             </div>
           </div>
           <p>{item.description.shortDescription}</p>
+          {item.freeShipping && (
+            <div>
+              <i className='fa fa-truck mx-2'></i>
+              Envio{" "}
+              <strong className='text-success font-weight-bold text-uppercase'>
+                GRATIS
+              </strong>{" "}
+              en Argentina
+            </div>
+          )}
         </div>
-
         <div className='purchase-details'>
           <div className='purchase-option'>
             <h5>
@@ -129,15 +138,7 @@ function ItemDetail({ item }) {
             <div className='tab-panels'>
               <section id='description' className='tab-panel'>
                 <h2>About</h2>
-                <p>
-                  The Scorpion EXO-R420 isn't some half-baked race-inspired
-                  helmet. This is the real deal, with an advanced LG
-                  polycarbonate shell that is SNELL approved. The Ellip-Tec 2
-                  face shield pulls the shield snug, making the EXO-R420
-                  aerodynamic. Cheek pads have an emergency release system and
-                  are washable if needed. Take the Scorpion EXO-R420 to the
-                  track or to the twisties.
-                </p>
+                <p>{item.description.longDescription}</p>
 
                 <h4>Features:</h4>
                 <ul className='features'>

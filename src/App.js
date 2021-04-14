@@ -2,7 +2,7 @@ import "./App.css";
 import Navbar from "./components/Navbar/";
 import ItemListContainer from "./components/ItemListContainer/index";
 import ItemDetailContainer from "./components/ItemDetailContainer";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { CartProvider } from "./context/CartContext";
 import Cart from "./components/Cart";
@@ -44,6 +44,7 @@ function App() {
             </Route>
             <Route path='/cart' component={Cart} />
             <Route exact path='*'>
+              {/* <Redirect to='/error' /> */}
               <Error>
                 <h2 className='display-3'>404 Error</h2>
                 <p>No pudimos encontrar la página que estas buscando.</p>

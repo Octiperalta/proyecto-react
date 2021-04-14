@@ -279,11 +279,6 @@ const ModifiedLink = styled(Link)`
 function Cart() {
   const { cart, cartTotal, removeItem } = useContext(CartContext);
 
-  const deleteItem = e => {
-    const item = e.target.closest(".cart-item");
-    removeItem(Number(item.id));
-  };
-
   return (
     <ShoppingCart>
       <div className='header'>
@@ -332,7 +327,9 @@ function Cart() {
                         <div>
                           ${cartItem.quantity * cartItem.item.productPrice}
                         </div>
-                        <div className='button' onClick={deleteItem}>
+                        <div
+                          className='button'
+                          onClick={() => removeItem(cartItem.item.productID)}>
                           <button>
                             <i className='fas fa-times'></i>
                           </button>
@@ -345,7 +342,7 @@ function Cart() {
                     Your cart is empty!
                     <div>
                       <ModifiedLink to='/'>
-                        <i class='fas fa-chevron-left'></i>
+                        <i className='fas fa-chevron-left'></i>
                         Go shopping
                       </ModifiedLink>
                     </div>

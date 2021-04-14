@@ -28,6 +28,7 @@ export function CartProvider({ children }) {
 
   const removeItem = itemID => {
     const newCart = cart.filter(e => e.item.productID !== itemID);
+    console.log(newCart);
     setCart(newCart);
   };
 

@@ -3,21 +3,29 @@ import ItemList from "../ItemList";
 import Container from "react-bootstrap/Container";
 import Loader from "../Spinner";
 import { useParams } from "react-router-dom";
-import products from "../../stock";
+import { getFirestore } from "../../firebase";
 
-const fetchItems = categoryID => {
-  let filteredProducts = products;
-
+const fetchItems2 = async categoryID => {
+  const db = getFirestore();
   if (categoryID) {
-    filteredProducts = products.filter(
-      prod => prod.category.categoryID === categoryID
-    );
+    const itemsCollection = await db
+      .collection("items")
+      .where("category.categoryID", "==", categoryID)
+      .get();
+
+    const dbItems = itemsCollection.docs.map(item => {
+      return { productID: item.id, ...item.data() };
+    });
+
+    return dbItems;
   }
 
-  // console.log("Antes de la promesa", filteredProducts);
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(filteredProducts), 2000);
+  const itemsCollection = await db.collection("items").get();
+
+  const dbItems = itemsCollection.docs.map(item => {
+    return { productID: item.id, ...item.data() };
   });
+  return dbItems;
 };
 
 function ItemListContainer() {
@@ -25,7 +33,7 @@ function ItemListContainer() {
   const { id } = useParams(); // ID de Categoria
 
   useEffect(() => {
-    fetchItems(Number(id)).then(res => setItems(res));
+    fetchItems2(id).then(res => setItems(res));
 
     return () => {
       setItems(null);
