@@ -2,10 +2,12 @@ import "./App.css";
 import Navbar from "./components/Navbar/";
 import ItemListContainer from "./components/ItemListContainer/index";
 import ItemDetailContainer from "./components/ItemDetailContainer";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import { CartProvider } from "./context/CartContext";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
+import CheckoutConfirmed from "./components/Checkout/CheckoutConfirmed";
 
 const Content = styled.div`
   margin-top: calc(4vh);
@@ -43,8 +45,9 @@ function App() {
               <Cart />
             </Route>
             <Route path='/cart' component={Cart} />
+            <Route path='/checkout' component={Checkout} />
+            <Route path='/checkout-confirmed' component={CheckoutConfirmed} />
             <Route exact path='*'>
-              {/* <Redirect to='/error' /> */}
               <Error>
                 <h2 className='display-3'>404 Error</h2>
                 <p>No pudimos encontrar la página que estas buscando.</p>

@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ItemCount from "../ItemCount";
-import CartContext from "../../context/CartContext";
 
 const ModifiedLink = styled(Link)`
   color: unset;
@@ -16,8 +15,6 @@ const ModifiedLink = styled(Link)`
 `;
 function ItemDetail({ item }) {
   const [count, setCount] = useState();
-  const { cart } = useContext(CartContext);
-  console.log("Carrito:", cart);
 
   return (
     <section className='item-section'>

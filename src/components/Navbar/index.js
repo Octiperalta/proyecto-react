@@ -116,10 +116,10 @@ const MyNavbar = styled.nav`
 
       .cart-dropdown {
         position: absolute;
-        top: 150%;
+        top: 130%;
         right: 0%;
         /* background-color: #46494f; */
-        background-color: #e2e3e5;
+        background-color: white;
         height: 0px;
         width: 250px;
         transition: 250ms ease-in-out;
@@ -130,10 +130,42 @@ const MyNavbar = styled.nav`
           display: none;
           height: 10px;
           width: 10px;
-          background-color: #e2e3e5;
+          background-color: white;
           top: -5px;
           right: 4px;
           transform: rotate(-45deg);
+        }
+
+        .product-item {
+          padding: 1rem;
+
+          .item-img {
+            width: 35%;
+            padding: 0.5rem;
+            flex-shrink: 0;
+
+            img {
+              width: 100%;
+              display: block;
+            }
+          }
+
+          .item-info {
+            flex-grow: 1;
+            background-color: pink;
+            padding: 0.5rem 0;
+
+            h4 {
+              font-family: Raleway;
+              color: #333;
+              font-size: 0.95rem;
+              font-weight: 600;
+            }
+
+            p {
+              margin: 0;
+            }
+          }
         }
       }
     }
@@ -185,6 +217,7 @@ const CategoriesItem = styled.div`
     }
   }
 `;
+
 const Navbar = () => {
   return (
     <>
@@ -240,8 +273,9 @@ const Navbar = () => {
             <i className='bx bx-user'></i>
           </div>
           <div className='cart'>
-            <CartWidget />
-            <div className='cart-dropdown'></div>
+            <Link to='/cart'>
+              <CartWidget />
+            </Link>
           </div>
         </div>
       </MyNavbar>

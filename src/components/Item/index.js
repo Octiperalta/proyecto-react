@@ -163,7 +163,7 @@ function Item({ itemData }) {
   return (
     <li>
       <CardItem className='rounded border shadow'>
-        <div className='card-item-image' onClick={e => console.log(e.target)}>
+        <div className='card-item-image'>
           <Link to={`/item/${itemData.productID}`}>
             <img src={itemData.imageUrl} alt='' />
           </Link>

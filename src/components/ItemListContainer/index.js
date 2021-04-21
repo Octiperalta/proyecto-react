@@ -3,37 +3,14 @@ import ItemList from "../ItemList";
 import Container from "react-bootstrap/Container";
 import Loader from "../Spinner";
 import { useParams } from "react-router-dom";
-import { getFirestore } from "../../firebase";
-
-const fetchItems2 = async categoryID => {
-  const db = getFirestore();
-  if (categoryID) {
-    const itemsCollection = await db
-      .collection("items")
-      .where("category.categoryID", "==", categoryID)
-      .get();
-
-    const dbItems = itemsCollection.docs.map(item => {
-      return { productID: item.id, ...item.data() };
-    });
-
-    return dbItems;
-  }
-
-  const itemsCollection = await db.collection("items").get();
-
-  const dbItems = itemsCollection.docs.map(item => {
-    return { productID: item.id, ...item.data() };
-  });
-  return dbItems;
-};
+import { fetchItems } from "../../services/products";
 
 function ItemListContainer() {
   const [items, setItems] = useState();
   const { id } = useParams(); // ID de Categoria
 
   useEffect(() => {
-    fetchItems2(id).then(res => setItems(res));
+    fetchItems(id).then(res => setItems(res));
 
     return () => {
       setItems(null);
