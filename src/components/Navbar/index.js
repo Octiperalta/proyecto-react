@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import logo from "./logo.png";
 import CartWidget from "../CartWidget/";
 import styled from "styled-components";
@@ -64,15 +63,11 @@ const MyNavbar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* position: fixed; */
   position: relative;
-  /* top: 30px; */
   z-index: 1000;
 
   .categories {
     display: inline-flex;
-    /* background-color: lightblue; */
-    /* height: 7vh; */
     align-items: center;
   }
 
@@ -89,13 +84,12 @@ const MyNavbar = styled.nav`
     align-items: center;
     list-style: none;
     height: 100%;
-    /* background-color: red; */
+
     & > div {
       position: relative;
       margin-left: 20px;
-      /* text-align: center; */
+
       i {
-        /* margin-left: 20px; */
         font-size: 1.4rem;
         font-weight: 100;
         color: white;

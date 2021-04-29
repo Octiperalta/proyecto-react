@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import Loader from "../Spinner";
+import Loader from "../Loader";
 import ItemDetail from "../ItemDetail";
 import { getItems } from "../../services/products";
 

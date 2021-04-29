@@ -1,6 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { getOrder } from "../../services/order";
+import Loader from "../Loader";
 
 const Confirmation = styled.div`
   width: 70%;
@@ -51,6 +53,39 @@ const Confirmation = styled.div`
       }
     }
   }
+
+  .order-info {
+    background-color: #eceff1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1.5rem 2.2rem;
+    margin-top: 3rem;
+    gap: 3rem;
+
+    & > div {
+      /* background-color: pink; */
+      padding: 0 1rem 0 1rem;
+
+      /* & + div { */
+      /* border-left: 1px solid grey; */
+      /* } */
+
+      .detail-name {
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        color: #999;
+        letter-spacing: 1px;
+        font-weight: 300;
+        margin-bottom: 0.5rem;
+      }
+
+      .detail-info {
+        font-weight: 700;
+        color: #333;
+        font-size: 1rem;
+      }
+    }
+  }
 `;
 
 const ModifiedLink = styled(Link)`
@@ -63,29 +98,71 @@ const ModifiedLink = styled(Link)`
 `;
 
 function CheckoutConfirmed() {
+  const { orderID } = useParams();
+  const [order, setOrder] = useState();
+
+  useEffect(() => {
+    getOrder(orderID).then(res => setOrder(res.data()));
+  }, []);
+
   return (
-    <Confirmation>
-      <div className='breadcrumb'>
-        <div className='breadcrumb-item'>
-          <ModifiedLink to='/'>Home</ModifiedLink>
-        </div>
-        <div className='breadcrumb-item active'>Order confirmed</div>
-      </div>
-      <h3>Order confirmed</h3>
-      <div className='alert alert-success'>Your order is confirmed</div>
+    <>
+      {order ? (
+        <Confirmation>
+          <div className='breadcrumb'>
+            <div className='breadcrumb-item'>
+              <ModifiedLink to='/'>Home</ModifiedLink>
+            </div>
+            <div className='breadcrumb-item active'>Order confirmed</div>
+          </div>
+          <h3>Order confirmed</h3>
+          <div className='alert alert-success'>Your order is confirmed</div>
 
-      <div className='more-info'>
-        <p>Thank you, Joe. Your order is confirmed.</p>
-        <p>
-          Your order hasn't shipped yet but we will send you ane email when it
-          does.
-        </p>
+          <div className='more-info'>
+            <p>Thank you, {order.buyer.name}. Your order is confirmed.</p>
+            <p>
+              Your order hasn't shipped yet but we will send you ane email when
+              it does.
+            </p>
 
-        <button>
-          <ModifiedLink to='/'>Back to dashboard</ModifiedLink>
-        </button>
-      </div>
-    </Confirmation>
+            <button>
+              <ModifiedLink to='/'>Back to dashboard</ModifiedLink>
+            </button>
+          </div>
+
+          <div className='order-info'>
+            <div>
+              <div className='detail-name'>Order id</div>
+              <div
+                className='detail-info'
+                style={{ textTransform: "uppercase" }}>
+                {orderID}
+              </div>
+            </div>
+            <div>
+              <div className='detail-name'>Date</div>
+              <div className='detail-info'>
+                {`${order.date
+                  .toDate()
+                  .getDate()}/${order.date
+                  .toDate()
+                  .getMonth()}/${order.date.toDate().getFullYear()}`}
+              </div>
+            </div>
+            <div>
+              <div className='detail-name'>Total</div>
+              <div className='detail-info'>${order.totalPrice}</div>
+            </div>
+            <div>
+              <div className='detail-name'>Contact Email</div>
+              <div className='detail-info'>{order.buyer.email}</div>
+            </div>
+          </div>
+        </Confirmation>
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 }
 

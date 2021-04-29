@@ -1,22 +1,15 @@
 import React, { useContext, useState } from "react";
-// import "./style.scss";
 import CartContext from "../../context/CartContext";
 
 import styled from "styled-components";
 
 const Counter = styled.div`
-  /* background: red; */
-  /* padding: 0.5rem; */
-  /* display: flex; */
   gap: 0.5rem;
-  /* flex-direction: column; */
-  /* width: 100px; */
   height: 40px;
   position: relative;
 
   .inpunt-counter {
     height: 100%;
-    /* height: 2.3rem; */
     width: 5.4rem;
     position: relative;
     margin-bottom: 1rem;
@@ -25,9 +18,8 @@ const Counter = styled.div`
   input {
     text-align: center;
     padding-right: 20px;
-    /* width: 2rem; */
-    height: 100%;
     width: 100%;
+    height: 100%;
     &:focus {
       outline: none;
     }
@@ -69,20 +61,15 @@ const OutOfStock = styled.span`
   top: 50%;
   left: 90px;
   transform: translateY(-50%);
-  /* background-color: #e84545; */
 `;
 
 function ItemCount({ initial, stock, onAdd, item }) {
   const [value, setValue] = useState(initial);
   const { addItem } = useContext(CartContext);
-  // console.log({ initial });
 
   const addToCart = () => {
     onAdd(value);
-    console.log("Se agregaron al carrito " + value + " productos");
     addItem(item, value);
-    // console.log("Carrito", cart);
-    // console.log(item);
   };
 
   return (

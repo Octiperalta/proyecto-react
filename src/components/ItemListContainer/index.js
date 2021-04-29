@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ItemList from "../ItemList";
 import Container from "react-bootstrap/Container";
-import Loader from "../Spinner";
+import Loader from "../Loader";
 import { useParams } from "react-router-dom";
 import { fetchItems } from "../../services/products";
 

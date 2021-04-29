@@ -96,6 +96,8 @@ const CheckoutContainer = styled.div`
     .contact-form {
       padding-left: 4rem;
       display: flex;
+      position: relative;
+
       flex-direction: column;
       justify-content: space-between;
 
@@ -194,19 +196,17 @@ const CheckoutContainer = styled.div`
 `;
 
 function Checkout() {
-  const { cartTotal, cart, clear } = useContext(CartContext);
-  // const [orderID, setOrderID] = useState();
+  const { cartTotal, cart, clearCart } = useContext(CartContext);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  const finishPurchase = () => {
-    generateOrder(cart, cartTotal());
+  const finishPurchase = async () => {
     setLoading(true);
+    const orderID = await generateOrder(cart, cartTotal());
 
-    console.log("Despues");
     setTimeout(() => {
-      clear();
-      history.push("/checkout-confirmed");
+      clearCart();
+      history.push(`/checkout-confirmed/${orderID.id}`);
     }, 2000);
   };
 
@@ -220,7 +220,7 @@ function Checkout() {
           <div className='breadcrumb-item'>
             <ModifiedLink to='/cart'>Shoping Cart</ModifiedLink>
           </div>
-          <div className='breadcrumb-item active'>Shoping Cart</div>
+          <div className='breadcrumb-item active'>Checkout</div>
         </div>
 
         <h2>Checkout</h2>
@@ -277,7 +277,7 @@ function Checkout() {
                   id='zip'
                   type='text'
                   required
-                  placeholder='Posta Code'
+                  placeholder='Postal Code'
                   name='zipCode'
                 />
               </div>
@@ -285,7 +285,7 @@ function Checkout() {
                 <label htmlFor='phone'>Phone Number</label>
                 <input
                   id='phone'
-                  type='number'
+                  type='text'
                   placeholder='Phone Number'
                   name='phoneNumber'
                   required

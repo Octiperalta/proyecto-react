@@ -16,12 +16,14 @@ export function CartProvider({ children }) {
       setCart([...cart, { item: newItem, quantity: newQuantity }]);
     }
   };
+
   const cartTotal = () => {
     return cart.reduce(
       (acc, item) => acc + item.item.productPrice * item.quantity,
       0
     );
   };
+
   const isInCart = id => {
     return cart.find(e => e.item.productID === id);
   };
@@ -32,11 +34,11 @@ export function CartProvider({ children }) {
     setCart(newCart);
   };
 
-  const clear = () => {
+  const clearCart = () => {
     setCart([]);
   };
 
-  const data = { cart, addItem, removeItem, clear, cartTotal };
+  const data = { cart, addItem, removeItem, clearCart, cartTotal };
 
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 }

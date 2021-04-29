@@ -185,7 +185,6 @@ function Item({ itemData }) {
           <p className='card-item-description'>
             {itemData.category.categoryName}
           </p>
-          {/* <h3 className='card-item-title'>Titulo</h3> */}
           <ModifiedLink
             to={`/item/${itemData.productID}`}
             className='card-item-title'>

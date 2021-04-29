@@ -1,4 +1,3 @@
-// import { getFirestore } from "../../firebase";
 import firebase from "firebase/app";
 import { getFirestore } from "../firebase";
 
@@ -13,8 +12,7 @@ const getBuyer = () => {
   return buyer;
 };
 
-export const generateOrder = (cartItems, cartTotal, setOrderID) => {
-  console.log("Crear orden");
+export const generateOrder = (cartItems, cartTotal) => {
   const db = getFirestore();
   const orders = db.collection("orders");
 
@@ -34,12 +32,13 @@ export const generateOrder = (cartItems, cartTotal, setOrderID) => {
     totalPrice: cartTotal,
   };
 
-  orders
-    .add(newOrder)
-    .then(({ id }) => {
-      console.log(id);
-    })
-    .catch(err => {
-      console.log("Algo salio mal", err);
-    });
+  return orders.add(newOrder);
+};
+
+export const getOrder = async orderID => {
+  const db = getFirestore();
+  const orderCollection = db.collection("orders");
+  const order = await orderCollection.doc(orderID).get();
+
+  return order;
 };

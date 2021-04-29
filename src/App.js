@@ -46,7 +46,10 @@ function App() {
             </Route>
             <Route path='/cart' component={Cart} />
             <Route path='/checkout' component={Checkout} />
-            <Route path='/checkout-confirmed' component={CheckoutConfirmed} />
+            <Route
+              path='/checkout-confirmed/:orderID'
+              component={CheckoutConfirmed}
+            />
             <Route exact path='*'>
               <Error>
                 <h2 className='display-3'>404 Error</h2>
