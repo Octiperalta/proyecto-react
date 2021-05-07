@@ -1,13 +1,13 @@
 import "./App.css";
+import { Switch, Route } from "react-router-dom";
+import styled from "styled-components";
 import Navbar from "./components/Navbar/";
 import ItemListContainer from "./components/ItemListContainer/index";
 import ItemDetailContainer from "./components/ItemDetailContainer";
-import { Switch, Route } from "react-router-dom";
-import styled from "styled-components";
-import { CartProvider } from "./context/CartContext";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import CheckoutConfirmed from "./components/Checkout/CheckoutConfirmed";
+import { CartProvider } from "./context/CartContext";
 
 const Content = styled.div`
   margin-top: calc(4vh);

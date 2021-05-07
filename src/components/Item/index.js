@@ -2,12 +2,55 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 
+function Item({ itemData }) {
+  const history = useHistory();
+
+  const goToItemDetail = () => {
+    history.push(`/item/${itemData.productID}`);
+  };
+
+  return (
+    <li>
+      <CardItem className='rounded border shadow'>
+        <div className='card-item-image'>
+          <Link to={`/item/${itemData.productID}`}>
+            <img src={itemData.imageUrl} alt='' />
+          </Link>
+
+          <div className='product-links' style={{ pointerEvents: "none" }}>
+            <span style={{ pointerEvents: "initial" }}>
+              <i className='bx bxs-cart'></i>
+            </span>
+            <span onClick={goToItemDetail} style={{ pointerEvents: "initial" }}>
+              <i className='bx bx-search-alt-2'></i>
+              View
+            </span>
+            <span style={{ pointerEvents: "initial" }}>
+              <i className='bx bx-fullscreen'></i>
+            </span>
+          </div>
+        </div>
+        <div className='card-item-body'>
+          <p className='card-item-description'>
+            {itemData.category.categoryName}
+          </p>
+          <ModifiedLink
+            to={`/item/${itemData.productID}`}
+            className='card-item-title'>
+            {itemData.productName.shortName}
+          </ModifiedLink>
+          <p className='card-item-price'>${itemData.productPrice}</p>
+        </div>
+      </CardItem>
+    </li>
+  );
+}
+
+export default Item;
+
 const CardItem = styled.div`
   width: 250px;
-  /* height: 400px; */
   margin-right: 10px;
-  /* margin-bottom: 10px; */
-  /* height: 400px; */
 
   .card-item-image {
     padding: 0.4rem;
@@ -70,7 +113,6 @@ const CardItem = styled.div`
         &:nth-of-type(2) {
           font-family: "Poppins";
           font-weight: 500;
-          /* font-size: 0.9rem; */
           background-color: #be6b62;
           color: #f3f3f3;
           padding: 2px 20px;
@@ -140,7 +182,6 @@ const CardItem = styled.div`
 const ModifiedLink = styled(Link)`
   text-decoration: none;
   color: rgb(55, 58, 67);
-  /* font-size: 2em; */
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -152,49 +193,3 @@ const ModifiedLink = styled(Link)`
     text-decoration: underline;
   }
 `;
-
-function Item({ itemData }) {
-  const history = useHistory();
-
-  function goToItemDetail() {
-    history.push(`/item/${itemData.productID}`);
-  }
-
-  return (
-    <li>
-      <CardItem className='rounded border shadow'>
-        <div className='card-item-image'>
-          <Link to={`/item/${itemData.productID}`}>
-            <img src={itemData.imageUrl} alt='' />
-          </Link>
-
-          <div className='product-links' style={{ pointerEvents: "none" }}>
-            <span style={{ pointerEvents: "initial" }}>
-              <i className='bx bxs-cart'></i>
-            </span>
-            <span onClick={goToItemDetail} style={{ pointerEvents: "initial" }}>
-              <i className='bx bx-search-alt-2'></i>
-              View
-            </span>
-            <span style={{ pointerEvents: "initial" }}>
-              <i className='bx bx-fullscreen'></i>
-            </span>
-          </div>
-        </div>
-        <div className='card-item-body'>
-          <p className='card-item-description'>
-            {itemData.category.categoryName}
-          </p>
-          <ModifiedLink
-            to={`/item/${itemData.productID}`}
-            className='card-item-title'>
-            {itemData.productName.shortName}
-          </ModifiedLink>
-          <p className='card-item-price'>${itemData.productPrice}</p>
-        </div>
-      </CardItem>
-    </li>
-  );
-}
-
-export default Item;

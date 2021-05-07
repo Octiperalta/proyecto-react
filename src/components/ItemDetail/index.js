@@ -4,15 +4,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ItemCount from "../ItemCount";
 
-const ModifiedLink = styled(Link)`
-  color: unset;
-  text-decoration: none;
-
-  &:hover {
-    color: initial;
-    text-decoration: underline;
-  }
-`;
 function ItemDetail({ item }) {
   const [count, setCount] = useState();
 
@@ -344,7 +335,6 @@ function ItemDetail({ item }) {
               </section>
             </div>
           </div>
-          {/* End Tabset */}
         </div>
       </div>
     </section>
@@ -352,3 +342,13 @@ function ItemDetail({ item }) {
 }
 
 export default ItemDetail;
+
+const ModifiedLink = styled(Link)`
+  color: unset;
+  text-decoration: none;
+
+  &:hover {
+    color: initial;
+    text-decoration: underline;
+  }
+`;

@@ -7,14 +7,21 @@ export function CartProvider({ children }) {
 
   const addItem = (newItem, newQuantity) => {
     const currentItem = isInCart(newItem.productID);
+
+    let newCart;
+    let newItemQuantity;
+
     if (currentItem) {
-      // const newCart = cart.filter(c => c.productID !== currentItem.productID);
-      // setCart([...newCart, {item: currentItem, quantity: item.quantity + newQuantity }])
-      currentItem.quantity += newQuantity;
-      setCart(cart);
+      newCart = cart.filter(
+        e => e.item.productID !== currentItem.item.productID
+      );
+      newItemQuantity = currentItem.quantity + newQuantity;
     } else {
-      setCart([...cart, { item: newItem, quantity: newQuantity }]);
+      newCart = [...cart];
+      newItemQuantity = newQuantity;
     }
+
+    setCart([...newCart, { item: newItem, quantity: newItemQuantity }]);
   };
 
   const cartTotal = () => {
@@ -30,7 +37,6 @@ export function CartProvider({ children }) {
 
   const removeItem = itemID => {
     const newCart = cart.filter(e => e.item.productID !== itemID);
-    console.log(newCart);
     setCart(newCart);
   };
 

@@ -14,10 +14,8 @@
   flex-wrap: wrap;
   width: 98%;
   margin: -1rem auto;
-  // background-color: lightblue;
 
   & > div {
-    // background: red;
     min-height: 200px;
     min-width: 40%;
     margin: 5px;
@@ -25,28 +23,19 @@
   }
 
   .item-img {
-    // background-color: orange;
     height: 600px;
     overflow: hidden;
-    // flex-grow: 0;
     flex-basis: 0;
     display: flex;
     justify-content: center;
 
-    // padding: 1rem;
-    // min-width: 45%;
-
     img {
       height: 100%;
-      // width: 90%;
-      // display: block;
-      // object-fit: cover;
     }
   }
 
   .item-info {
     background-color: rgba($color: #efebe9, $alpha: 0.1);
-    // border: 1px solid #999;
     position: relative;
     order: 2;
     flex-basis: 0;
@@ -55,15 +44,12 @@
     border-radius: 0.5rem;
 
     .breadcrumb {
-      // background-color: red;
       display: flex;
-      // gap: 1rem;
       justify-content: center;
       font-size: 0.85rem;
       margin-top: 0.5rem;
 
       .breadcrumb-item {
-        // margin: 0 0.3rem;
         position: relative;
         cursor: pointer;
 
@@ -85,7 +71,6 @@
         line-height: 1;
         display: flex;
         align-items: center;
-        // background-color: red;
         min-height: 105px;
       }
 
@@ -113,9 +98,7 @@
     }
 
     .purchase-details {
-      // background-color: pink;
       padding: 1em 1.7rem 0;
-      // padding-left: 1.7rem;
 
       display: grid;
       gap: 1rem;
@@ -123,7 +106,6 @@
 
       .purchase-option {
         margin-bottom: 0;
-        // background-color: red;
         h5 {
           text-transform: uppercase;
           font-weight: 500;
@@ -136,7 +118,6 @@
             font-size: 0.75rem;
             opacity: 0.7;
             font-weight: 300;
-            // letter-spacing: normal;
           }
         }
 
@@ -159,9 +140,7 @@
     }
 
     .purchase-buttons {
-      // position: absolute;
       padding: 1em 1.7rem 0;
-      // bottom: 2rem;
 
       .btn {
         padding: 1rem 1.5rem;
@@ -202,11 +181,8 @@
   }
 
   @media only screen and (max-width: 1100px) {
-    // background-color: green;
-
     & > div {
       min-width: 80%;
-      // height: 00px;
     }
 
     .item-img {
@@ -214,20 +190,17 @@
 
       img {
         width: 90%;
-        // object-fit: cover;
       }
     }
   }
 }
 
 .item-details {
-  // background-color: lightgreen;
   order: 4;
   flex-basis: 0;
   background-color: rgba($color: #efebe9, $alpha: 0.1);
 
   .wrap {
-    // background-color: pink;
     width: 80%;
 
     margin: 1.5rem auto;
@@ -260,14 +233,12 @@
 
     .tabset > label {
       position: relative;
-      // background-color: pink;
 
       user-select: none;
       display: inline-block;
       margin: 0 -1px;
       padding: 15px 25px;
       text-transform: uppercase;
-      // opacity: 0.75;
       font-size: 0.9rem;
       letter-spacing: 1px;
       color: rgba($color: #333, $alpha: 0.7);
@@ -312,7 +283,6 @@
       h4 {
         font-size: 1rem;
         color: #333;
-        // margin: 0.5rem 0 0.3rem;
       }
 
       .features {
@@ -336,33 +306,26 @@
 
         .column {
           display: flex;
-          // background-color: pink;
           flex-direction: column;
-          // margin: 0 3rem 0 0;
           width: 50%;
 
           .fila {
             display: flex;
             align-items: center;
-            // background-color: pink;
-            // margin: 5px;
             font-size: 0.85rem;
             padding: 1rem;
             border-bottom: 1px solid rgba(153, 153, 153, 0.562);
 
             h4 {
-              // background-color: lightblue;
               display: inline-block;
               width: 180px;
               color: #333;
-              // color: red;
               font-size: 0.75rem;
               font-weight: 400;
               letter-spacing: 1px;
             }
 
             span {
-              // background-color: orange;
               width: 350px;
               padding-left: 1rem;
             }
@@ -376,7 +339,6 @@
 
       .reviewer {
         padding: 1rem;
-        // background-color: red;
         display: flex;
         gap: 1rem;
         height: 220px;
@@ -389,12 +351,10 @@
         }
         &__image {
           width: 350px;
-          // background-color: red;
           text-align: center;
           color: #666;
 
           .img-wrapper {
-            // height: 10px;
             width: 150px;
             overflow: hidden;
             border-radius: 50%;
@@ -413,12 +373,10 @@
 
         &__data {
           padding: 1rem 0;
-          // background-color: pink;
 
           .name {
             color: #333;
             font-size: 1rem;
-            // line-height: 1;
             margin-bottom: 5px;
           }
 

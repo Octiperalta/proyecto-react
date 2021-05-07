@@ -2,6 +2,23 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import CartContext from "../../context/CartContext";
 
+const CartWidget = () => {
+  const { cart } = useContext(CartContext);
+
+  return (
+    <>
+      <i className='bx bx-cart'></i>
+      {Boolean(cart.length) && (
+        <Badge>
+          <span>{cart.length}</span>
+        </Badge>
+      )}
+    </>
+  );
+};
+
+export default CartWidget;
+
 const Badge = styled.div`
   position: absolute;
   top: -5px;
@@ -30,20 +47,3 @@ const Badge = styled.div`
     align-items: center;
   }
 `;
-
-const CartWidget = () => {
-  const { cart } = useContext(CartContext);
-
-  return (
-    <>
-      <i className='bx bx-cart'></i>
-      {Boolean(cart.length) && (
-        <Badge>
-          <span>{cart.length}</span>
-        </Badge>
-      )}
-    </>
-  );
-};
-
-export default CartWidget;

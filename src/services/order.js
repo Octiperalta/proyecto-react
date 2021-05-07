@@ -1,22 +1,20 @@
 import firebase from "firebase/app";
 import { getFirestore } from "../firebase";
 
-const getBuyer = () => {
-  const form = document.getElementById("invoice-form");
-  const buyer = {
-    name: form.fullname.value || "Joe Black",
-    phone: form.phone.value || "123456789",
-    email: form.email.value || "joe.black@gmail.com",
-  };
-
-  return buyer;
-};
-
-export const generateOrder = (cartItems, cartTotal) => {
+export const generateOrder = (
+  cartItems,
+  cartTotal,
+  { fullName, email, phone }
+) => {
   const db = getFirestore();
   const orders = db.collection("orders");
 
-  const buyer = getBuyer();
+  const buyer = {
+    name: fullName || "Joe Black",
+    email: email || "joe.black@gmail.com",
+    phone: phone || "123456789",
+  };
+
   const items = cartItems.map(item => {
     return {
       id: item.item.productID,
@@ -25,6 +23,7 @@ export const generateOrder = (cartItems, cartTotal) => {
       quantity: item.quantity,
     };
   });
+
   const newOrder = {
     buyer: buyer,
     items: items,

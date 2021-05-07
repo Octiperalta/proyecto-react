@@ -10,6 +10,85 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 
+function Navbar() {
+  return (
+    <>
+      <Header>
+        <div className='info text-muted'>
+          <span className='phone-contact'>
+            <FontAwesomeIcon
+              icon={faPhone}
+              rotation={90}
+              className='outline'
+              style={{ marginRight: " 8px" }}
+            />
+            020-800-456-747
+          </span>
+          <span>Envío gratis en compras mayores a $500</span>
+        </div>
+        <div className='social-media-links'>
+          {icons.map((icon, index) => (
+            <FontAwesomeIcon icon={icon} key={index} />
+          ))}
+        </div>
+      </Header>
+
+      <MyNavbar>
+        <div className='categories'>
+          {navbarCategories.map(category => (
+            <div className='categories' key={category.navUrl}>
+              <CategoriesItem className='nav-item'>
+                <NavLink
+                  to={`/category/${category.navUrl}`}
+                  activeClassName='active'>
+                  {category.navName}
+                </NavLink>
+              </CategoriesItem>
+            </div>
+          ))}
+        </div>
+
+        <Link to='/'>
+          <img src={logo} alt='wbikes-logo' className='logo' />
+        </Link>
+
+        <div className='account'>
+          <div>
+            <i className='bx bx-search'></i>
+          </div>
+          <div>
+            <i className='bx bx-user'></i>
+          </div>
+          <div className='cart'>
+            <Link to='/cart'>
+              <CartWidget />
+            </Link>
+          </div>
+        </div>
+      </MyNavbar>
+    </>
+  );
+}
+
+export default Navbar;
+
+const navbarCategories = [
+  {
+    navUrl: "helmets",
+    navName: "Cascos",
+  },
+  {
+    navUrl: "jackets",
+    navName: "Camperas",
+  },
+  {
+    navUrl: "gloves",
+    navName: "Guantes",
+  },
+];
+
+const icons = [faGlobeAmericas, faInstagram, faTwitter, faFacebookF];
+
 const Header = styled.header`
   width: 100%;
   height: 30px;
@@ -211,70 +290,3 @@ const CategoriesItem = styled.div`
     }
   }
 `;
-
-const Navbar = () => {
-  return (
-    <>
-      <Header>
-        <div className='info text-muted'>
-          <span className='phone-contact'>
-            <FontAwesomeIcon
-              icon={faPhone}
-              rotation={90}
-              className='outline'
-              style={{ marginRight: " 8px" }}
-            />
-            020-800-456-747
-          </span>
-          <span>Envío gratis en compras mayores a $500</span>
-        </div>
-        <div className='social-media-links'>
-          <FontAwesomeIcon icon={faGlobeAmericas} />
-          <FontAwesomeIcon icon={faInstagram} />
-          <FontAwesomeIcon icon={faTwitter} />
-          <FontAwesomeIcon icon={faFacebookF} />
-        </div>
-      </Header>
-
-      <MyNavbar>
-        <div className='categories'>
-          <CategoriesItem className='nav-item'>
-            <NavLink to={"/category/helmets"} activeClassName='active'>
-              Cascos
-            </NavLink>
-          </CategoriesItem>
-          <CategoriesItem className='nav-item'>
-            <NavLink to={"/category/jackets"} activeClassName='active'>
-              Camperas
-            </NavLink>
-          </CategoriesItem>
-          <CategoriesItem className='nav-item'>
-            <NavLink to={"/category/gloves"} activeClassName='active'>
-              Guantes
-            </NavLink>
-          </CategoriesItem>
-        </div>
-
-        <Link to='/'>
-          <img src={logo} alt='wbikes-logo' className='logo' />
-        </Link>
-
-        <div className='account'>
-          <div>
-            <i className='bx bx-search'></i>
-          </div>
-          <div>
-            <i className='bx bx-user'></i>
-          </div>
-          <div className='cart'>
-            <Link to='/cart'>
-              <CartWidget />
-            </Link>
-          </div>
-        </div>
-      </MyNavbar>
-    </>
-  );
-};
-
-export default Navbar;
